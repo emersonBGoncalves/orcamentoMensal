@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  sges:
+  orcamentomensal:
     build: .
     ports:
       - "8000:8000"  # Mapeia a porta 8000 do container para a porta 8000 da máquina host
@@ -8,3 +8,13 @@ services:
       - .:/var/www/html  # Monta o diretório atual (código local) dentro do container
     environment:
       - APACHE_DOCUMENT_ROOT=/var/www/html
+  
+  mysql:
+    image: mysql:latest
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: orcamentoMensal
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql:/var/lib/mysql
