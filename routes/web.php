@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\IncomeTypeController;
+use App\Http\Controllers\TypeExpenseController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,3 +21,6 @@ Route::get('/', function () {
 });
 
 Route::post('/login', [AuthController::class, 'login']);
+
+Route::resource('type_expense', TypeExpenseController::class)->middleware('auth');
+Route::resource('income_type', IncomeTypeController::class)->middleware('auth');

@@ -82,7 +82,7 @@
                 
                 <div class="mb-3">
                     <label class="form-label">Senha</label>
-                    <input type="senha" name="senha" class="form-control bg-dark text-white border-secondary" required>
+                    <input type="password" name="password" class="form-control bg-dark text-white border-secondary" required>
                 </div>
                 
                 <button type="submit" class="btn w-100" style="background-color: var(--primary-green); color: white;">Entrar</button>

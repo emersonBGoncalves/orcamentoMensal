@@ -11,12 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('lancamentos', function (Blueprint $table) {
+        Schema::create('releases', function (Blueprint $table) {
             $table->id()->autoIncrement();
-            $table->foreignId('id_tipo_despesa')->constrained('tipos_despesas')->onDelete('cascade')->nullable();
-            $table->foreignId('id_tipo_renda')->constrained('tipos_rendas')->onDelete('cascade')->nullable();
-            $table->foreignId('id_usuario')->constrained('usuarios')->onDelete('cascade');
-            $table->date('data');
+            $table->foreignId('id_type_expense')->constrained('type_expenses')->onDelete('cascade')->nullable();
+            $table->foreignId('id_income_type')->constrained('income_types')->onDelete('cascade')->nullable();
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
+            $table->date('release_date');
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('lancamentos');
+        Schema::dropIfExists('releases');
     }
 };

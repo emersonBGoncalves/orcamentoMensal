@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AuthController extends Controller
 {
@@ -12,15 +14,19 @@ class AuthController extends Controller
         //validade credentials
         $request->validate([
             'email' => ['required', 'email'],
-            'senha' => ['required'],
+            'password' => ['required'],
         ], [
             'email.required' => 'O campo email é obrigatório',
             'email.email' => 'O campo email deve ser um email válido',
-            'senha.required' => 'O campo senha é obrigatório',
+            'password.required' => 'O campo senha é obrigatório',
         ]);
 
-        $credentials = $request->only('email', 'senha');
+        $credentials = $request->only('email', 'password');
         
+        if (Auth::attempt($credentials)) {
+            return redirect()->intended('home');
+        }
 
+        return back()->withErrors(['email' => 'As credenciais estão incorretas.']);
     }
 }
